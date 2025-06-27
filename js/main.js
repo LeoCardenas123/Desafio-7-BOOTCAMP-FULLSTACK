@@ -4,11 +4,13 @@
 
 var textoSalida = document.querySelector('p')
 
-var refBotonGato = document.getElementById('boton-gato')
-var refBotonPerro = document.getElementById('boton-perro')
-var refBotonRaton = document.getElementById('boton-raton')
+var refBotonGato1 = document.getElementById('boton-gato1')
+var refBotonGato2 = document.getElementById('boton-gato2')
+var refBotonGato3 = document.getElementById('boton-gato3')
 
 var botonReset = document.getElementById('reset')
+
+var textoAnalizado
 
 var clicks = 0
 
@@ -16,60 +18,53 @@ var clicks = 0
 // Zona de declaración de funciones globales
 //---------------------------------------
 
-function agregarGato(){
-    refBotonGato.onclick = ()=>{
+function agregarGato1(){
+    refBotonGato1.onclick = ()=>{
         clicks++
-        console.log(clicks)
-        textoSalida.innerText += 'GATOO1' 
+        console.log(clicks + ': cantidad de clicks')
+        textoSalida.innerText += '😺' 
         analisis()
-        var textoAnalizado = textoSalida.innerText.split('')
-        agregarConjunto()
+        textoAnalizado = textoSalida.innerText
+        console.log(textoAnalizado, typeof textoAnalizado)
+        agregarConjunto()    
     }
 }
 
-/* function agregarPerro(){
-    refBotonPerro.onclick = ()=>{
+/* function agregarGato2(){
+    refBotonGato2.onclick = ()=>{
         clicks++
         console.log(clicks)
-        textoSalida.innerText += 'GATO2' 
+        textoSalida.innerText += '😸' 
         analisis()
-        var textoAnalizado = textoSalida.innerText.split('')
-        if (textoAnalizado[3] == textoAnalizado[4]){
-            agregarConjunto()
-        }
-        else{
-            return
-        }
+        textoAnalizado = textoSalida.innerText
+        console.log(textoAnalizado)
+        agregarConjunto()  
     }
 }
 
-function agregarRaton(){
-    refBotonRaton.onclick = ()=>{
+function agregarGato3(){
+    refBotonGato3.onclick = ()=>{
         clicks++
         console.log(clicks)
-        textoSalida.innerText += 'GATO3' 
+        textoSalida.innerText += '😹' 
         analisis()
+        textoAnalizado = textoSalida.innerText
+        console.log(textoAnalizado)
+        agregarConjunto()  
         
     }
-} */
+}
+ */
 
 function analisis(){
-    var textoArray = textoSalida.innerText.split('')
-    
-    console.log(textoArray)
-    console.log('el analisis funciona correcto')
+  //  textoAnalizado = textoSalida.innerText.split('')
+    textoAnalizado = textoSalida.innerText
+    console.log(textoAnalizado)
+    console.warn('el analisis funciona correcto')
 }
 
 function agregarConjunto(){
-    textoAnalizado = textoSalida.innerText.split('')
-    for(var caracter of textoAnalizado){
-        console.log(caracter)
-        if(caracter = caracter++){
-            console.error('FUNCIONO') 
-            console.log(textoAnalizado.join(''))
-            textoSalida.innerText = 'FUNCIONO' + textoAnalizado.join('') + 'FUNCIONNOOO' 
-        }
-    }
+    console.error('El agregar conjunto esta funcionando correctamente')
 }
 
 function reset(){
@@ -77,13 +72,14 @@ function reset(){
         console.log('RESET')
         textoSalida.innerText = ''
         clicks = 0
+        console.clear()
     }
 }
 
 function start() {
-    agregarGato()
-  /*   agregarPerro()
-    agregarRaton() */
+    agregarGato1()
+    /* agregarGato2()
+    agregarGato3() */
     reset()
 }
 
