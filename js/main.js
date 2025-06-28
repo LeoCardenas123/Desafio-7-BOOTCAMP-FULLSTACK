@@ -9,9 +9,7 @@ var botonReset = document.getElementById('reset')
 
 var textoSalida = document.querySelector('p')
 
-var textoAnalizado
-
-var clicks = 0
+var textoARepresentar = []
 
 //---------------------------------------
 // Zona de declaración de funciones globales
@@ -19,64 +17,83 @@ var clicks = 0
 
 function agregarGato1(){
     refBotonGato1.onclick = ()=>{
-        clicks++
-        console.log(clicks + ': cantidad de clicks')
-
-        textoSalida.innerText += '😺' 
-        textoAnalizado = textoSalida.innerText
-
-        console.log(textoAnalizado, typeof textoAnalizado)
-        convertirTextoEnArray() 
         
+        textoARepresentar.push('😺') 
+
+        textoSalida.innerText = textoARepresentar.join('')
+
+        detectarRepeticiones()
     }
+
 }
 
-/* function agregarGato2(){
+function agregarGato2(){
     refBotonGato2.onclick = ()=>{
-        clicks++
-        console.log(clicks)
-        textoSalida.innerText += '😸' 
-        analisis()
-        textoAnalizado = textoSalida.innerText
-        console.log(textoAnalizado)
-        convertirTextoEnArray()  
+        
+        textoARepresentar.push('😸') 
+
+        textoSalida.innerText = textoARepresentar.join('')
+
+        detectarRepeticiones()
     }
+
 }
 
 function agregarGato3(){
     refBotonGato3.onclick = ()=>{
-        clicks++
-        console.log(clicks)
-        textoSalida.innerText += '😹' 
-        analisis()
-        textoAnalizado = textoSalida.innerText
-        console.log(textoAnalizado)
-        convertirTextoEnArray()  
         
+        textoARepresentar.push('😹') 
+
+        textoSalida.innerText = textoARepresentar.join('')
+
+        detectarRepeticiones()
     }
-}
- */
 
-function convertirTextoEnArray(){
-    console.error('TEXTO A ARRAY ESTA FUNCIONANDO' , textoAnalizado, typeof textoAnalizado)
-
-    textoHechoArray = textoAnalizado.split('"\"')
-    console.error(textoHechoArray, typeof textoHechoArray)
 }
 
-function reset(){
+function detectarRepeticiones() {
+    console.warn(textoARepresentar)
+
+    for (let i = 4; i < textoARepresentar.length; i++) {
+        if (textoARepresentar[i] === textoARepresentar[i - 1] &&
+            textoARepresentar[i] === textoARepresentar[i - 2] &&
+            textoARepresentar[i] === textoARepresentar[i - 3] &&
+            textoARepresentar[i] === textoARepresentar[i - 4] &&
+            textoARepresentar[i] === textoARepresentar[i - 5] &&
+            textoARepresentar[i] != '⬛'
+        ) 
+        {
+            console.error('se repitio 5 veces un emoji')
+
+            let indice = textoARepresentar.lastIndexOf('⬛')
+            
+            textoARepresentar.splice(i - 5, 6)
+            
+            textoARepresentar.unshift('⬛')
+            
+            break
+        }
+    }
+
+    textoSalida.innerText = textoARepresentar.join('')
+}
+
+
+
+function reset(){                            //Agrege un boton de reset para reiniciar el texto en pantalla a gusto
     botonReset.onclick = () =>{
         console.log('RESET')
         textoSalida.innerText = ''
-        clicks = 0
+        textoARepresentar = []
         console.clear()
     }
 }
 
 function start() {
+    detectarRepeticiones()
     agregarGato1()
-    /* agregarGato2()
-    agregarGato3() */
+    agregarGato2()
+    agregarGato3() 
     reset()
 }
 
