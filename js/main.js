@@ -1,6 +1,7 @@
 //---------------------------------------
 // Zona declaración de variables globales
 //---------------------------------------
+
 var refBotonGato1 = document.getElementById('boton-gato1')
 var refBotonGato2 = document.getElementById('boton-gato2')
 var refBotonGato3 = document.getElementById('boton-gato3')
@@ -54,7 +55,7 @@ function agregarGato3(){
 function detectarRepeticiones() {
     console.warn(textoARepresentar)
 
-    for (let i = 4; i < textoARepresentar.length; i++) {
+    for (let i = 0; i < textoARepresentar.length; i++) {
         if (textoARepresentar[i] === textoARepresentar[i - 1] &&
             textoARepresentar[i] === textoARepresentar[i - 2] &&
             textoARepresentar[i] === textoARepresentar[i - 3] &&
@@ -63,7 +64,7 @@ function detectarRepeticiones() {
             textoARepresentar[i] != '⬛'
         ) 
         {
-            console.error('se repitio 5 veces un emoji')
+            console.warn('se repitio 5 veces un emoji')
 
             let indice = textoARepresentar.lastIndexOf('⬛')
             
@@ -82,10 +83,10 @@ function detectarRepeticiones() {
 
 function reset(){                            //Agrege un boton de reset para reiniciar el texto en pantalla a gusto
     botonReset.onclick = () =>{
-        console.log('RESET')
         textoSalida.innerText = ''
         textoARepresentar = []
         console.clear()
+        console.warn('Se reseteó la consola')
     }
 }
 
